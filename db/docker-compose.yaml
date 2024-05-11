@@ -1,0 +1,23 @@
+version: "3"
+services:
+  db_dev:
+    image: postgres:15
+    container_name: postgres_dev
+    restart: always
+    environment:
+      POSTGRES_USER: superuser
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: db_identity
+    ports:
+      - '5445:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - db-network
+
+networks:
+  db-network:
+    external: true
+
+volumes:
+  db_data:

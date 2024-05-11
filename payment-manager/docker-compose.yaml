@@ -1,0 +1,18 @@
+version: "3"
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: payment-manager:develop
+    container_name: payment-manager
+    env_file:
+      - app.env
+    ports:
+      - "9004:9004"
+    networks:
+      - db-network
+
+networks:
+  db-network:
+    external: true
