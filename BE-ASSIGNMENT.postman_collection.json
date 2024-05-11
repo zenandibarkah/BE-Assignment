@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "5945bcff-900a-4672-bb30-fcd4bd552c9c",
+		"name": "BE-ASSIGNMENT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27846620"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"zenandib\",\r\n    \"email\": \"zeinandibarkah19@gmail.com\",\r\n    \"password\": \"secretpassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/public/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"public",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set('token', jsonData.response.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"zeinandibarkah19@gmail.com\",\r\n    \"password\":\"secretpassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/public/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/myuser",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"myuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"zenandib\",\r\n    \"phone\":\"0885\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/private/user/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account Bank",
+			"item": [
+				{
+					"name": "List Account Bank",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/user/banks",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"user",
+								"banks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Account Bank",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/user/bank/:accNumber",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"user",
+								"bank",
+								":accNumber"
+							],
+							"variable": [
+								{
+									"key": "accNumber",
+									"value": "12308346127312"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Account Bank",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account_name\":\"Zenandi Barkah\",\r\n    \"bank_name\":\"MANDIRI\",\r\n    \"account_number\":\"12308346127312\"\r\n    // \"account_name\":\"Zenandi Barkah\",\r\n    // \"bank_name\":\"BCA\",\r\n    // \"account_number\":\"889761237\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/private/user/bank/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"user",
+								"bank",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History Trans",
+			"item": [
+				{
+					"name": "List History Trans",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9004/private/history/trans",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"private",
+								"history",
+								"trans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail History Trans",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9004/private/history/trans/:idTrans",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"private",
+								"history",
+								"trans",
+								":idTrans"
+							],
+							"variable": [
+								{
+									"key": "idTrans",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Transaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"source_bank\":\"MANDIRI\",\r\n    \"source_account_number\": \"12308346127312\",\r\n    \"destination_bank\":\"BCA\",\r\n    \"destination_account_number\":\"889761237\",\r\n    \"amount\": 2000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9004/private/trans/send",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"private",
+								"trans",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw Transaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"destination_bank\":\"MANDIRI\",\r\n    \"destination_account_number\":\"12308346127312\",\r\n    \"amount\": 3000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9004/private/trans/withdraw",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"private",
+								"trans",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
